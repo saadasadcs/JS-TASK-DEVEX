@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Invoice</title>
+  <link rel="stylesheet" href="invoice.css" />
+</head>
+
+<body>
+
+  <div class="container">
+
+    <button id="back-button">Back</button>
+
+    <div class="main-content">
+
+      <div class="invoice-section">
+
+        <h2>Order Summary</h2>
+
+        <table id="invoice-table">
+          <thead>
+            <tr>
+              <th>Product Name</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+
+        <div class="summary-section">
+          <table class="summary-Table">
+            <tr>
+              <th colspan="2" id="total-bill-invoice-heading">
+                Total Bill Invoice
+              </th>
+            </tr>
+            <tr>
+              <th id="summary-Table-heading">Sub-Total</th>
+              <td id="summary-Table-data">
+                <span id="invoice-subtotal">$0.00</span>
+              </td>
+            </tr>
+            <tr>
+              <th id="summary-Table-heading">GST (16%)</th>
+              <td id="summary-Table-data"><span id="invoice-gst">$0.00</span></td>
+            </tr>
+            <tr>
+              <th id="summary-Table-heading">Discount (10%)</th>
+              <td id="summary-Table-data">
+                <span id="invoice-discount">$0.00</span>
+              </td>
+            </tr>
+            <tr>
+              <th id="summary-Table-heading">Grand Total</th>
+              <td id="summary-Table-data">
+                <span id="invoice-total">$0.00</span>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const subtotal = localStorage.getItem("subtotal") || "$0.00";
+    const gst = localStorage.getItem("gst") || "$0.00";
+    const discount = localStorage.getItem("discount") || "$0.00";
+    const grandTotal = localStorage.getItem("grand-total") || "$0.00";
+
+    const invoiceTableBody = document.querySelector("#invoice-table tbody");
+    cart.forEach((item) => {
+      const totalItemPrice = (item.price * item.quantity).toFixed(2);
+      invoiceTableBody.innerHTML += `
+            <tr>
+                <td>${item.name}</td>
+                <td>$${item.price.toFixed(2)} </td>
+                <td>${item.quantity} </td>
+                <td>$${totalItemPrice}</td>
+            </tr>
+        `;
+    });
+
+    document.getElementById("invoice-subtotal").innerText = subtotal;
+    document.getElementById("invoice-gst").innerText = gst;
+    document.getElementById("invoice-discount").innerText = discount;
+    document.getElementById("invoice-total").innerText = grandTotal;
+
+
+    document.getElementById("back-button").addEventListener("click", function () {
+
+      localStorage.clear();
+
+      window.location.href = "index.html";
+    });
+  </script>
+</body>
+
+</html>
