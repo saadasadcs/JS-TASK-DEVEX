@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Cart</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="product-dropdown">
+        <button class="product-btn" onclick="toggleDropdown()">Products</button>
+        <div class="dropdown-content">
+
+            <div class="product-item">
+                <img src="Laptop.jpg" alt="HP Elite Book">
+                <div>
+                    <div class="product-name">HP Elite Book</div>
+                    <div class="product-price">$ 1299.99</div>
+                </div>
+                <button class="barcode" onclick="copyBarcode('# 698551')"># 698551</button>
+            </div>
+
+            <div class="product-item">
+                <img src="Laptop.jpg" alt="MacBook Air">
+                <div>
+                    <div class="product-name">MacBook Air</div>
+                    <div class="product-price">$ 1399.99</div>
+                </div>
+                <button class="barcode" onclick="copyBarcode('# 986551')"># 986551</button>
+            </div>
+
+            <div class="product-item">
+                <img src="Laptop.jpg" alt="HP Elite Book">
+                <div>
+                    <div class="product-name">HP ENVY G7</div>
+                    <div class="product-price">$ 1099.99</div>
+                </div>
+                <button class="barcode" onclick="copyBarcode('# 569851')"># 569851</button>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="cart-section">
+        <div class="input-group">
+            <input type="text" id="search-bar" placeholder="Enter product barcode" />
+            <button class="add-btn" onclick="addToCart()">Add</button>
+            <button class="clear-btn hidden" onclick="clearProduct()">Clear</button>
+        </div>
+        <div id="error-msg" style="color: red; display: none;"></div>
+    </div>
+
+    <div class="shopping-cart">
+        <center>
+            <h3>Shopping Cart</h3>
+        </center>
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="summary-section hidden">
+        <table class="summary-Table">
+            <tr>
+                <th colspan="2" id="total-bill-invoice-heading">Total Bill Invoice</th>
+            </tr>
+            <tr>
+                <th id="summary-Table-heading">Sub-Total</th>
+                <td id="summary-Table-data"><span id="subtotal">0.00$</span></td>
+            </tr>
+            <tr>
+                <th id="summary-Table-heading">GST (16%)</th>
+                <td id="summary-Table-data"><span id="gst">0.00$</span></td>
+            </tr>
+            <tr>
+                <th id="summary-Table-heading">Discount (10%)</th>
+                <td id="summary-Table-data"><span id="discount">0.00$</span></td>
+            </tr>
+            <tr>
+                <th id="summary-Table-heading">Grand Total</th>
+                <td id="summary-Table-data"><span id="grand-total">$0.00</span></td>
+            </tr>
+        </table>
+        <button id="confirm-btn" onclick="confirmOrder()">Confirm Order</button>
+    </div>
+
+    <script src="productCart.js"></script>
+</body>
+
+</html>
